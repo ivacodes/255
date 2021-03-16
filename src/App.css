@@ -1,38 +1,86 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200&display=swap');
+#root,
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  box-sizing: border-box;
+  background-color: #eeeeee;
+  color: #212121;
+ 
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.App {  
+  font-family: 'Oswald', sans-serif;  
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  height: 100vh;
+  
 }
 
-.App-link {
-  color: #61dafb;
+.pickers {
+  display: flex;
+  flex-direction: row;
+  width: 200px;
+  justify-content: space-between;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+i {
+  cursor: pointer;  
+}
+
+.reset {
+  font-size: small;
+  margin: 10px
+}
+
+.picker-container{
+  display: flex;
+  flex-direction: column;
+  
+  align-items: center;
+}
+
+.picker-time{
+  
+  font-size: x-large;
+}
+
+.picker{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.tomato-container {
+  background-image: url("./assets/tomato.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-top: 40px;
+  width: 300px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.tomato-container h2 {
+  margin-top: 80px;
+}
+.timer{
+  font-size: xx-large;
+  font-weight: bolder;
+  
+}
+
+.timer-controls {
+  margin-top: 20px;
 }
