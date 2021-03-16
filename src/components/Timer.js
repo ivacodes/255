@@ -1,41 +1,35 @@
-import React, { useState, useEffect } from "react";
-
-let timer;
+import React, { useState, useEffect, useRef } from "react";
 
 export const Timer = ({ workTime, breakTime }) => {
-  const [title, setTitle] = useState("Work");
   const [status, setStatus] = useState("stopped");
   const [timer, setTimer] = useState();
-  const [paused, setPaused] = useState();
   const [work, setWork] = useState(true);
+  const isMounted = useRef(false);
 
   const [secondsLeft, setSecondsLeft] = useState(workTime * 60);
 
   const start = () => {
+    // console.log("Checking work ", work);
+
     if (work) {
+      //work time
       setSecondsLeft(workTime * 60);
       const timer = setInterval(() => {
         setSecondsLeft((secondsLeft) => secondsLeft - 1);
-
-        if (secondsLeft === 0) {
-          clearInterval(timer);
-        }
       }, 1000);
       setTimer(timer);
       setStatus("running");
-      setTitle("Work");
     } else {
+      //break time
       setSecondsLeft(breakTime * 60);
+      console.log("creating break timer");
+
       const timer = setInterval(() => {
         setSecondsLeft((secondsLeft) => secondsLeft - 1);
-
-        if (secondsLeft === 0) {
-          clearInterval(timer);
-        }
       }, 1000);
       setTimer(timer);
+      // console.log(timer);
       setStatus("running");
-      setTitle("Break");
     }
   };
 
@@ -55,9 +49,17 @@ export const Timer = ({ workTime, breakTime }) => {
     if (secondsLeft === 0) {
       clearInterval(timer);
       setWork(!work);
-      start();
     }
-  }, [secondsLeft, timer]);
+  }, [secondsLeft]);
+
+  //monitors the work variable, only after the component is first mounted
+  useEffect(() => {
+    if (isMounted.current) {
+      start();
+    } else {
+      isMounted.current = true;
+    }
+  }, [work]);
 
   useEffect(() => {
     setSecondsLeft(workTime * 60);
@@ -67,7 +69,7 @@ export const Timer = ({ workTime, breakTime }) => {
 
   return (
     <div className='tomato-container'>
-      <h2>{title}</h2>
+      <h2>{work ? "Work" : "Break"}</h2>
       <div className='timer'>
         {String(Math.floor(secondsLeft / 60)).length < 2
           ? `0${Math.floor(secondsLeft / 60)}`
@@ -79,11 +81,10 @@ export const Timer = ({ workTime, breakTime }) => {
       </div>
       <div className='timer-controls'>
         {status === "running" ? (
-          <i className='im im-pause' onClick={pause}></i>
+          <i className='im im-stop' onClick={reset}></i>
         ) : (
           <i className='im im-play' onClick={start}></i>
         )}
-        <i className='im im-sync reset' onClick={reset}></i>
       </div>
     </div>
   );
