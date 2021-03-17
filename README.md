@@ -1,6 +1,5 @@
 # 25-5 clock React with Hooks
 
-image pomo
 ![Screenshot](/readme/pomo.png)
 
 ## Preview
