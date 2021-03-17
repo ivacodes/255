@@ -16,7 +16,7 @@ export const Picker = ({ title, defValue, getRes }) => {
       <div className='picker'>
         <h2>{title}</h2>
         <div className='picker-arrows'>
-          {time === 0 ? (
+          {time === 1 ? (
             <i className='im im-angle-down'></i>
           ) : (
             <i
