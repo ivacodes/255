@@ -36,11 +36,6 @@ export const Timer = ({ workTime, breakTime }) => {
     }
   };
 
-  const pause = () => {
-    clearInterval(timer);
-    setStatus("stopped");
-  };
-
   const reset = () => {
     clearInterval(timer);
     setStatus("stopped");
