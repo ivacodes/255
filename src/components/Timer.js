@@ -1,4 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
+import bell from "../assets/bell.wav";
+
+const audioElement = new Audio(bell);
 
 export const Timer = ({ workTime, breakTime }) => {
   const [status, setStatus] = useState("stopped");
@@ -47,6 +50,7 @@ export const Timer = ({ workTime, breakTime }) => {
 
   useEffect(() => {
     if (secondsLeft === 0) {
+      audioElement.play();
       clearInterval(timer);
       setWork(!work);
     }
@@ -66,6 +70,21 @@ export const Timer = ({ workTime, breakTime }) => {
     clearInterval(timer);
     setStatus("stopped");
   }, [workTime]);
+
+  useEffect(() => {
+    let minString =
+      String(Math.floor(secondsLeft / 60)).length < 2
+        ? `0${Math.floor(secondsLeft / 60)}`
+        : `${Math.floor(secondsLeft / 60)}`;
+    let secString =
+      String(Math.floor(secondsLeft % 60)).length < 2
+        ? `0${Math.floor(secondsLeft % 60)}`
+        : `${Math.floor(secondsLeft % 60)}`;
+
+    let status = work ? "W" : "B";
+
+    document.title = `${status} ${minString}:${secString}`;
+  }, [secondsLeft]);
 
   return (
     <div className='tomato-container'>
