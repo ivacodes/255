@@ -10,6 +10,8 @@ The app is deployed on Netlify
 
 ## Installation & Running
 
+Requires Node 22.22+ or 24.15+ (see `.nvmrc`) and [pnpm](https://pnpm.io).
+
 Clone the repo and run install in the project folder
 
 ```cmd
