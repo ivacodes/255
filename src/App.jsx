@@ -9,6 +9,7 @@ function App() {
 
   let [breakTime, setBreakTime] = useState(5);
   let [workTime, setWorkTime] = useState(25);
+  const [selection, setSelection] = useState(null);
 
   useEffect(() => {
     document.fonts.load("12px Oswald").then(() => setIsReady(true));
@@ -21,11 +22,19 @@ function App() {
           <h1>The timer.</h1>
         </header>
         <div className='pickers'>
-          <Picker title='Break' defValue={5} getRes={setBreakTime} />
-          <Picker title='Work' defValue={25} getRes={setWorkTime} />
+          <Picker title='Break' defValue={5} getRes={setBreakTime}
+            onSelect={() => setSelection({ phase: "break" })}
+          />
+          <Picker title='Work' defValue={25} getRes={setWorkTime}
+            onSelect={() => setSelection({ phase: "work" })}
+          />
         </div>
 
-        <Timer workTime={workTime} breakTime={breakTime} />
+        <Timer
+          workTime={workTime}
+          breakTime={breakTime}
+          selection={selection}
+        />
       </div>
     )
   );

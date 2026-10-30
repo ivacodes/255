@@ -29,8 +29,15 @@ body {
   justify-content: space-between;
 }
 
-i {
-  cursor: pointer;  
+.icon {
+  width: 1.6em;
+  height: 1.6em;
+  cursor: pointer;
+}
+
+.icon.disabled {
+  opacity: 0.3;
+  cursor: default;
 }
 
 .reset {
@@ -83,4 +90,12 @@ i {
 
 .timer-controls {
   margin-top: 20px;
+}
+.picker-title {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
 }

@@ -13,11 +13,11 @@ The app is deployed on Netlify
 Clone the repo and run install in the project folder
 
 ```cmd
-npm install
+pnpm install
 ```
 
 ```cmd
-npm run start
+pnpm start
 ```
 
 ## Usage
